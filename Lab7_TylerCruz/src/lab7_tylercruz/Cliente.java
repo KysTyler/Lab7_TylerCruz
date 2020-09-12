@@ -1,12 +1,15 @@
 package lab7_tylercruz;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Cliente {
+public class Cliente implements Serializable{
     ArrayList <Carro> listCarros = new ArrayList();
     private String name;
     private String apellido;
     private String edad;
+    
+    private static final long SerialVersionUID=102L;
 
     public Cliente() {
     }
@@ -55,7 +58,7 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente{" + "listCarros=" + listCarros + ", name=" + name + ", apellido=" + apellido + ", edad=" + edad + '}';
+        return name + " " + apellido;
     }
     
     

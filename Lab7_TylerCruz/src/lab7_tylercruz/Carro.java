@@ -1,11 +1,15 @@
 package lab7_tylercruz;
 
-public class Carro {
+import java.io.Serializable;
+
+public class Carro implements Serializable{
     private String numeroPlaca;
     private String size;
     private String numeroDoors;
     private String clean;
-
+    
+    private static final long SerialVersionUID=101L;
+    
     public Carro() {
     }
 
@@ -50,7 +54,7 @@ public class Carro {
 
     @Override
     public String toString() {
-        return "Carro{" + "numeroPlaca=" + numeroPlaca + ", size=" + size + ", clean=" + clean + '}';
+        return numeroPlaca + " " + size + ", clean=" + clean + '}';
     }
     
     

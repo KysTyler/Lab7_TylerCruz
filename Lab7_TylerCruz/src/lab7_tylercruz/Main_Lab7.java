@@ -5,7 +5,10 @@
  */
 package lab7_tylercruz;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -18,6 +21,10 @@ public class Main_Lab7 extends javax.swing.JFrame {
      */
     public Main_Lab7() {
         initComponents();
+        TH1 = new Thread1(JProgressBar_Empleado1);
+        TH2 = new Thread2(JProgressBar_Empleado2);
+        TH3 = new Thread3(JProgressBar_Empleado3);
+
     }
 
     /**
@@ -47,8 +54,6 @@ public class Main_Lab7 extends javax.swing.JFrame {
         JT_ApellidoCliente = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         JSpinner_edadCliente = new javax.swing.JSpinner();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        JList_CarrosCliente = new javax.swing.JList<>();
         JB_SaveCliente = new javax.swing.JButton();
         JD_RegistrarEmpleado = new javax.swing.JDialog();
         MainPanel_RegistrarEmpleado = new javax.swing.JPanel();
@@ -58,9 +63,23 @@ public class Main_Lab7 extends javax.swing.JFrame {
         JT_ApellidoEmpleado = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         JSpinner_Empleado = new javax.swing.JSpinner();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        JList_CarrosEmpleado = new javax.swing.JList<>();
         JB_SaveEmpleado = new javax.swing.JButton();
+        JD_AddCarsToClient = new javax.swing.JDialog();
+        jPanel1 = new javax.swing.JPanel();
+        CB_Clientes = new javax.swing.JComboBox<>();
+        JB_AddingCarToClient = new javax.swing.JButton();
+        CB_CarsToBeAdded = new javax.swing.JComboBox<>();
+        JB_FinishCliente = new javax.swing.JButton();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        JD_AddClienteCarsToEmployee = new javax.swing.JDialog();
+        MainPanel = new javax.swing.JPanel();
+        CB_CarsToEmployee = new javax.swing.JComboBox<>();
+        CB_CarOwners = new javax.swing.JComboBox<>();
+        CB_CARS = new javax.swing.JComboBox<>();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        JB_SaveToEmployee = new javax.swing.JButton();
         MainPanel_JFrame = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -68,18 +87,21 @@ public class Main_Lab7 extends javax.swing.JFrame {
         jTable4 = new javax.swing.JTable();
         jScrollPane7 = new javax.swing.JScrollPane();
         jTable5 = new javax.swing.JTable();
-        jProgressBar1 = new javax.swing.JProgressBar();
-        jProgressBar2 = new javax.swing.JProgressBar();
-        jProgressBar3 = new javax.swing.JProgressBar();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        JProgressBar_Empleado1 = new javax.swing.JProgressBar();
+        JProgressBar_Empleado2 = new javax.swing.JProgressBar();
+        JProgressBar_Empleado3 = new javax.swing.JProgressBar();
+        CB_Empleado1 = new javax.swing.JComboBox<>();
+        CB_Empleado2 = new javax.swing.JComboBox<>();
+        CB_Empleado3 = new javax.swing.JComboBox<>();
+        JB_Simulacion = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         JMI_CreateCar = new javax.swing.JMenuItem();
         JMI_CreateClient = new javax.swing.JMenuItem();
         JMI_CreateEmployee = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        JMI_AddingCarTooClient = new javax.swing.JMenuItem();
+        JMI_AddingCarToEmployee = new javax.swing.JMenuItem();
 
         jLabel1.setText("Numero Placa: ");
 
@@ -161,19 +183,21 @@ public class Main_Lab7 extends javax.swing.JFrame {
 
         JSpinner_edadCliente.setModel(new javax.swing.SpinnerNumberModel(18, 18, 100, 1));
 
-        JList_CarrosCliente.setModel(new DefaultListModel());
-        jScrollPane4.setViewportView(JList_CarrosCliente);
-
         JB_SaveCliente.setText("Save");
+        JB_SaveCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JB_SaveClienteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout MainPanel_CrearClienteLayout = new javax.swing.GroupLayout(MainPanel_CrearCliente);
         MainPanel_CrearCliente.setLayout(MainPanel_CrearClienteLayout);
         MainPanel_CrearClienteLayout.setHorizontalGroup(
             MainPanel_CrearClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MainPanel_CrearClienteLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
                 .addGroup(MainPanel_CrearClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(MainPanel_CrearClienteLayout.createSequentialGroup()
+                        .addGap(26, 26, 26)
                         .addGroup(MainPanel_CrearClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -185,11 +209,9 @@ public class Main_Lab7 extends javax.swing.JFrame {
                                 .addComponent(JT_ApellidoCliente))
                             .addComponent(JSpinner_edadCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(MainPanel_CrearClienteLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(MainPanel_CrearClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(JB_SaveCliente)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(78, Short.MAX_VALUE))
+                        .addGap(61, 61, 61)
+                        .addComponent(JB_SaveCliente)))
+                .addContainerGap(172, Short.MAX_VALUE))
         );
         MainPanel_CrearClienteLayout.setVerticalGroup(
             MainPanel_CrearClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -207,21 +229,21 @@ public class Main_Lab7 extends javax.swing.JFrame {
                     .addComponent(jLabel7)
                     .addComponent(JSpinner_edadCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addComponent(JB_SaveCliente)
-                .addContainerGap(89, Short.MAX_VALUE))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout JD_CrearClienteLayout = new javax.swing.GroupLayout(JD_CrearCliente.getContentPane());
         JD_CrearCliente.getContentPane().setLayout(JD_CrearClienteLayout);
         JD_CrearClienteLayout.setHorizontalGroup(
             JD_CrearClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(MainPanel_CrearCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(JD_CrearClienteLayout.createSequentialGroup()
+                .addComponent(MainPanel_CrearCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         JD_CrearClienteLayout.setVerticalGroup(
             JD_CrearClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(MainPanel_CrearCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(MainPanel_CrearCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         jLabel8.setText("Nombre:");
@@ -232,10 +254,12 @@ public class Main_Lab7 extends javax.swing.JFrame {
 
         JSpinner_Empleado.setModel(new javax.swing.SpinnerNumberModel(18, 18, 100, 1));
 
-        JList_CarrosEmpleado.setModel(new DefaultListModel());
-        jScrollPane5.setViewportView(JList_CarrosEmpleado);
-
         JB_SaveEmpleado.setText("Save");
+        JB_SaveEmpleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JB_SaveEmpleadoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout MainPanel_RegistrarEmpleadoLayout = new javax.swing.GroupLayout(MainPanel_RegistrarEmpleado);
         MainPanel_RegistrarEmpleado.setLayout(MainPanel_RegistrarEmpleadoLayout);
@@ -243,23 +267,22 @@ public class Main_Lab7 extends javax.swing.JFrame {
             MainPanel_RegistrarEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MainPanel_RegistrarEmpleadoLayout.createSequentialGroup()
                 .addGap(59, 59, 59)
-                .addGroup(MainPanel_RegistrarEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8))
-                .addGap(18, 18, 18)
                 .addGroup(MainPanel_RegistrarEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(MainPanel_RegistrarEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(JT_NameEmpleado)
-                        .addComponent(JT_ApellidoEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(JSpinner_Empleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MainPanel_RegistrarEmpleadoLayout.createSequentialGroup()
-                .addContainerGap(78, Short.MAX_VALUE)
-                .addGroup(MainPanel_RegistrarEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(JB_SaveEmpleado)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(124, 124, 124))
+                    .addGroup(MainPanel_RegistrarEmpleadoLayout.createSequentialGroup()
+                        .addGroup(MainPanel_RegistrarEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8))
+                        .addGap(18, 18, 18)
+                        .addGroup(MainPanel_RegistrarEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(MainPanel_RegistrarEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(JT_NameEmpleado)
+                                .addComponent(JT_ApellidoEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(JSpinner_Empleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(MainPanel_RegistrarEmpleadoLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(JB_SaveEmpleado)))
+                .addContainerGap(119, Short.MAX_VALUE))
         );
         MainPanel_RegistrarEmpleadoLayout.setVerticalGroup(
             MainPanel_RegistrarEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -276,22 +299,161 @@ public class Main_Lab7 extends javax.swing.JFrame {
                 .addGroup(MainPanel_RegistrarEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(JSpinner_Empleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(JB_SaveEmpleado)
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout JD_RegistrarEmpleadoLayout = new javax.swing.GroupLayout(JD_RegistrarEmpleado.getContentPane());
         JD_RegistrarEmpleado.getContentPane().setLayout(JD_RegistrarEmpleadoLayout);
         JD_RegistrarEmpleadoLayout.setHorizontalGroup(
             JD_RegistrarEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(MainPanel_RegistrarEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(MainPanel_RegistrarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         JD_RegistrarEmpleadoLayout.setVerticalGroup(
             JD_RegistrarEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(MainPanel_RegistrarEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(MainPanel_RegistrarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
+        JB_AddingCarToClient.setText("Add Car too Client");
+        JB_AddingCarToClient.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JB_AddingCarToClientActionPerformed(evt);
+            }
+        });
+
+        JB_FinishCliente.setText("Finish Creating Employee by adding to Archive");
+        JB_FinishCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JB_FinishClienteActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(JB_FinishCliente)
+                    .addComponent(JB_AddingCarToClient)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(CB_Clientes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(CB_CarsToBeAdded, 0, 263, Short.MAX_VALUE)))
+                .addContainerGap(82, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(CB_Clientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(CB_CarsToBeAdded, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(JB_AddingCarToClient)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(JB_FinishCliente)
+                .addContainerGap(31, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout JD_AddCarsToClientLayout = new javax.swing.GroupLayout(JD_AddCarsToClient.getContentPane());
+        JD_AddCarsToClient.getContentPane().setLayout(JD_AddCarsToClientLayout);
+        JD_AddCarsToClientLayout.setHorizontalGroup(
+            JD_AddCarsToClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        JD_AddCarsToClientLayout.setVerticalGroup(
+            JD_AddCarsToClientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
+        jMenuItem1.setText("jMenuItem1");
+
+        CB_CarsToEmployee.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CB_CarsToEmployeeActionPerformed(evt);
+            }
+        });
+
+        CB_CarOwners.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                CB_CarOwnersItemStateChanged(evt);
+            }
+        });
+        CB_CarOwners.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CB_CarOwnersActionPerformed(evt);
+            }
+        });
+
+        jLabel11.setText("Employee");
+
+        jLabel12.setText("CarOwner");
+
+        jLabel13.setText("Car");
+
+        JB_SaveToEmployee.setText("Save To Employee");
+        JB_SaveToEmployee.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JB_SaveToEmployeeActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout MainPanelLayout = new javax.swing.GroupLayout(MainPanel);
+        MainPanel.setLayout(MainPanelLayout);
+        MainPanelLayout.setHorizontalGroup(
+            MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MainPanelLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(JB_SaveToEmployee)
+                    .addGroup(MainPanelLayout.createSequentialGroup()
+                        .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(CB_CarsToEmployee, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(CB_CarOwners, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(CB_CARS, 0, 307, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
+                                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(41, Short.MAX_VALUE))
+        );
+        MainPanelLayout.setVerticalGroup(
+            MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MainPanelLayout.createSequentialGroup()
+                .addGap(58, 58, 58)
+                .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CB_CarsToEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CB_CarOwners, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CB_CARS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13))
+                .addGap(35, 35, 35)
+                .addComponent(JB_SaveToEmployee)
+                .addContainerGap(108, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout JD_AddClienteCarsToEmployeeLayout = new javax.swing.GroupLayout(JD_AddClienteCarsToEmployee.getContentPane());
+        JD_AddClienteCarsToEmployee.getContentPane().setLayout(JD_AddClienteCarsToEmployeeLayout);
+        JD_AddClienteCarsToEmployeeLayout.setHorizontalGroup(
+            JD_AddClienteCarsToEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JD_AddClienteCarsToEmployeeLayout.createSequentialGroup()
+                .addComponent(MainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        JD_AddClienteCarsToEmployeeLayout.setVerticalGroup(
+            JD_AddClienteCarsToEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JD_AddClienteCarsToEmployeeLayout.createSequentialGroup()
+                .addComponent(MainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -350,50 +512,70 @@ public class Main_Lab7 extends javax.swing.JFrame {
         });
         jScrollPane7.setViewportView(jTable5);
 
+        JProgressBar_Empleado1.setMaximum(10);
+
+        JProgressBar_Empleado2.setMaximum(10);
+
+        JProgressBar_Empleado3.setMaximum(10);
+
+        JB_Simulacion.setText("Simulacion");
+        JB_Simulacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JB_SimulacionActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout MainPanel_JFrameLayout = new javax.swing.GroupLayout(MainPanel_JFrame);
         MainPanel_JFrame.setLayout(MainPanel_JFrameLayout);
         MainPanel_JFrameLayout.setHorizontalGroup(
             MainPanel_JFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MainPanel_JFrameLayout.createSequentialGroup()
+                .addComponent(JProgressBar_Empleado1, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(MainPanel_JFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(MainPanel_JFrameLayout.createSequentialGroup()
+                        .addComponent(CB_Empleado2, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(109, 109, 109)
+                        .addComponent(CB_Empleado3, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(MainPanel_JFrameLayout.createSequentialGroup()
+                        .addComponent(JProgressBar_Empleado2, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(JProgressBar_Empleado3, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(MainPanel_JFrameLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(MainPanel_JFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(MainPanel_JFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jProgressBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 353, Short.MAX_VALUE))
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(MainPanel_JFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(MainPanel_JFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 353, Short.MAX_VALUE)
-                        .addComponent(jProgressBar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(MainPanel_JFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(MainPanel_JFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 353, Short.MAX_VALUE)
-                        .addComponent(jProgressBar3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(12, Short.MAX_VALUE))
+                    .addGroup(MainPanel_JFrameLayout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CB_Empleado1, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JB_Simulacion))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         MainPanel_JFrameLayout.setVerticalGroup(
             MainPanel_JFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MainPanel_JFrameLayout.createSequentialGroup()
-                .addContainerGap(221, Short.MAX_VALUE)
+                .addContainerGap(120, Short.MAX_VALUE)
                 .addGroup(MainPanel_JFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jProgressBar1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jProgressBar2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jProgressBar3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(MainPanel_JFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(45, 45, 45)
+                    .addComponent(JProgressBar_Empleado1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JProgressBar_Empleado2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JProgressBar_Empleado3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(MainPanel_JFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CB_Empleado1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CB_Empleado2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CB_Empleado3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(MainPanel_JFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39)
+                .addComponent(JB_Simulacion)
+                .addGap(56, 56, 56))
         );
 
         jMenu1.setText("Creacion");
@@ -424,7 +606,24 @@ public class Main_Lab7 extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Edit");
+        jMenu2.setText("Add");
+
+        JMI_AddingCarTooClient.setText("Add Car to Client");
+        JMI_AddingCarTooClient.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JMI_AddingCarTooClientActionPerformed(evt);
+            }
+        });
+        jMenu2.add(JMI_AddingCarTooClient);
+
+        JMI_AddingCarToEmployee.setText("Add Car to Employee");
+        JMI_AddingCarToEmployee.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JMI_AddingCarToEmployeeActionPerformed(evt);
+            }
+        });
+        jMenu2.add(JMI_AddingCarToEmployee);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -440,7 +639,10 @@ public class Main_Lab7 extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(MainPanel_JFrame, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(MainPanel_JFrame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -449,19 +651,21 @@ public class Main_Lab7 extends javax.swing.JFrame {
     private void JB_CreateCarroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_CreateCarroActionPerformed
         // TODO add your handling code here:
         //String numeroPlaca, String size, String numeroDoors, String clean
-        Carro x = new Carro(JT_NumeroPlaca.getText(),CB_Size.getSelectedItem().toString(),JSpinner_DoorCant.getValue().toString(),
-        JSpinner_LevelDirty.toString());
-        DefaultListModel modelo
-                = (DefaultListModel) JList_CarrosCliente.getModel();
-        DefaultListModel modelo1
-                = (DefaultListModel) JList_CarrosEmpleado.getModel();
-
-        modelo.addElement(x);
-        modelo1.addElement(x);
-        JList_CarrosCliente.setModel(modelo);
+        Carro x = new Carro(JT_NumeroPlaca.getText(), CB_Size.getSelectedItem().toString(), JSpinner_DoorCant.getValue().toString(),
+                JSpinner_LevelDirty.getValue().toString());
+        DefaultComboBoxModel modelo2 = (DefaultComboBoxModel) CB_CarsToBeAdded.getModel();
+        modelo2.addElement(x);
+        CB_CarsToBeAdded.setModel(modelo2);
+        bitacora ap = new bitacora("./Carros.cbm");
+        ap.cargarArchivo();
+        ap.setCarro(x);
+        ap.escribirArchivo();
+        JOptionPane.showMessageDialog(this, "Carro guardado exitosamente");
+        //JList_CarrosCliente.setModel(modelo);
         JT_NumeroPlaca.setText("");
         JSpinner_DoorCant.setValue(2);
         JSpinner_LevelDirty.setValue(5);
+
     }//GEN-LAST:event_JB_CreateCarroActionPerformed
 
     private void JMI_CreateCarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMI_CreateCarActionPerformed
@@ -486,8 +690,184 @@ public class Main_Lab7 extends javax.swing.JFrame {
         JD_RegistrarEmpleado.pack();
         JD_RegistrarEmpleado.setLocationRelativeTo(this);
         JD_RegistrarEmpleado.setVisible(true);
-        
+
     }//GEN-LAST:event_JMI_CreateEmployeeActionPerformed
+
+    private void JB_SaveClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_SaveClienteActionPerformed
+        // TODO add your handling code here:
+        //String nombre, String apellido, String edad
+        Cliente x = new Cliente(this.JT_NameCliente.getText(), this.JT_ApellidoCliente.getText(),
+                this.JSpinner_edadCliente.getValue().toString());
+        DefaultComboBoxModel modelo2 = (DefaultComboBoxModel) CB_Clientes.getModel();
+        modelo2.addElement(x);
+        CB_Clientes.setModel(modelo2);
+
+        //x.setListCarros(this.JList_CarrosCliente.getSele);
+        bitacora1 ap = new bitacora1("./Cliente.cbm");
+        ap.cargarArchivo();
+        ap.setCliente(x);
+        ap.escribirArchivo();
+        JOptionPane.showMessageDialog(this, "Cliente guardado exitosamente");
+    }//GEN-LAST:event_JB_SaveClienteActionPerformed
+
+    private void JB_SaveEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_SaveEmpleadoActionPerformed
+        // TODO add your handling code here:
+        if (cont < 3) {
+            Empleado x = new Empleado(this.JT_NameEmpleado.getText(), this.JT_ApellidoEmpleado.getText(),
+                    this.JSpinner_Empleado.getValue().toString());
+            DefaultComboBoxModel modelo2 = (DefaultComboBoxModel) CB_CarsToEmployee.getModel();
+            modelo2.addElement(x);
+            CB_CarsToEmployee.setModel(modelo2);
+            //Separator
+            bitacora2 ap = new bitacora2("./Empleado.cbm");
+            ap.cargarArchivo();
+            ap.setEmpleado(x);
+            ap.escribirArchivo();
+            JOptionPane.showMessageDialog(this, "Empleado guardado exitosamente");
+            cont++;
+        } else {
+            JOptionPane.showMessageDialog(this, "Sorry already reached limit of employees! No more can be created!");
+        }
+    }//GEN-LAST:event_JB_SaveEmpleadoActionPerformed
+
+    private void JMI_AddingCarTooClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMI_AddingCarTooClientActionPerformed
+        // TODO add your handling code here:
+        JD_AddCarsToClient.setModal(true);
+        JD_AddCarsToClient.pack();
+        JD_AddCarsToClient.setLocationRelativeTo(this);
+        JD_AddCarsToClient.setVisible(true);
+
+    }//GEN-LAST:event_JMI_AddingCarTooClientActionPerformed
+
+    private void JB_AddingCarToClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_AddingCarToClientActionPerformed
+        // TODO add your handling code here:
+        Cliente temp
+                = (Cliente) CB_Clientes.getSelectedItem();
+        if (temp != null) {
+            Carro temp1
+                    = (Carro) CB_CarsToBeAdded.getSelectedItem();
+            temp.setCarro(temp1);
+            JOptionPane.showMessageDialog(this, "Added to  client successfully!");
+            if (temp1 != null) {
+                temp.setCarro(temp1);
+            }
+
+        }
+
+    }//GEN-LAST:event_JB_AddingCarToClientActionPerformed
+
+    private void CB_CarsToEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CB_CarsToEmployeeActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_CB_CarsToEmployeeActionPerformed
+
+    private void JMI_AddingCarToEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMI_AddingCarToEmployeeActionPerformed
+        // TODO add your handling code here:
+        JD_AddClienteCarsToEmployee.setModal(true);
+        JD_AddClienteCarsToEmployee.pack();
+        JD_AddClienteCarsToEmployee.setLocationRelativeTo(this);
+        JD_AddClienteCarsToEmployee.setVisible(true);
+    }//GEN-LAST:event_JMI_AddingCarToEmployeeActionPerformed
+
+    private void JB_FinishClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_FinishClienteActionPerformed
+        // TODO add your handling code here:
+        if (JOptionPane.showConfirmDialog(null, "Are you want to save Cliente", "WARNING",
+                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            // yes option
+            bitacora1 ap = new bitacora1("./Cliente.cbm");
+            ap.cargarArchivo();
+            ap.setCliente((Cliente) CB_Clientes.getSelectedItem());
+            ap.escribirArchivo();
+            JOptionPane.showMessageDialog(this, "Cliente guardado exitosamente");
+
+        } else {
+            // no option
+        }
+        DefaultComboBoxModel modelo2 = (DefaultComboBoxModel) CB_CarOwners.getModel();
+        modelo2.addElement((Cliente) CB_Clientes.getSelectedItem());
+        CB_CarOwners.setModel(modelo2);
+    }//GEN-LAST:event_JB_FinishClienteActionPerformed
+
+    private void CB_CarOwnersItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CB_CarOwnersItemStateChanged
+        // TODO add your handling code here:
+//        DefaultComboBoxModel modelo2 = (DefaultComboBoxModel) CB_CARS.getModel();
+//        Cliente temp
+//                = (Cliente) CB_CarOwners.getSelectedItem();
+//        if (temp != null) {
+//            System.out.println("HELLLOO  ONE");
+//            bitacora1 ap = new bitacora1("./Cliente.cbm");
+//            ap.cargarArchivo();
+////            DefaultComboBoxModel modelo
+////                        = new DefaultComboBoxModel( 
+////                                ap.getListaClientes().toArray());
+//            for (int i = 0; i < ap.getListaClientes().size(); i++) {
+//                System.out.println("IS IT HERE");
+//                if (temp.equals(ap.getListaClientes().get(i))) {
+//                    //System.out.println("HELLOOOOO");
+//                    //ap.getListaClientes().get(i).getListCarros();
+//                    for (int j = 0; j < ap.getListaClientes().get(i).getListCarros().size(); j++) {
+//                        modelo2.addElement(ap.getListaClientes().get(i).getListCarros().get(j));
+//                    }
+//                }
+//            }
+//            CB_CARS.setModel(modelo2);
+//        }
+    }//GEN-LAST:event_CB_CarOwnersItemStateChanged
+
+    private void CB_CarOwnersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CB_CarOwnersActionPerformed
+        // TODO add your handling code here:
+        DefaultComboBoxModel modelo2 = (DefaultComboBoxModel) CB_CARS.getModel();
+        Cliente temp
+                = (Cliente) CB_CarOwners.getSelectedItem();
+        if (temp != null) {
+            System.out.println("HELLLOO  ONE");
+            bitacora1 ap = new bitacora1("./Cliente.cbm");
+            ap.cargarArchivo();
+            for (int i = 0; i < ap.getListaClientes().size(); i++) {
+                System.out.println("IS IT HERE");
+                if (temp.getName().equals(ap.getListaClientes().get(i).getName())) {
+                    System.out.println("HELLOOOOO INSIDE IFFFF");
+                    //ap.getListaClientes().get(i).getListCarros();
+                    for (int j = 0; j < ap.getListaClientes().get(i).getListCarros().size(); j++) {
+                        System.out.println("INSIDE SECOND IF");
+                        modelo2.addElement(ap.getListaClientes().get(i).getListCarros().get(j));
+                    }
+                }
+            }
+            CB_CARS.setModel(modelo2);
+        }
+
+    }//GEN-LAST:event_CB_CarOwnersActionPerformed
+
+    private void JB_SaveToEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_SaveToEmployeeActionPerformed
+        // TODO add your handling code here:
+         Empleado temp
+                = (Empleado) CB_CarsToEmployee.getSelectedItem();
+          if (temp != null) {
+            bitacora2 ap = new bitacora2("./Empleado.cbm");
+            ap.cargarArchivo();
+            for (int i = 0; i < ap.getListaEmpleados().size(); i++) {
+                System.out.println("IS IT HERE");
+                if (temp.getNombre().equals(ap.getListaEmpleados().get(i).getNombre())) {
+                    System.out.println("HELLOOOOO INSIDE IFFFF");
+                    //ap.getListaClientes().get(i).getListCarros();
+                    for (int j = 0; j < ap.getListaEmpleados().get(i).getListCarros().size(); j++) {
+                        System.out.println("INSIDE SECOND IF");
+                        //modelo2.addElement(ap.getListaClientes().get(i).getListCarros().get(j));
+                    }
+                }
+            }
+          }
+         
+
+    }//GEN-LAST:event_JB_SaveToEmployeeActionPerformed
+
+    private void JB_SimulacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_SimulacionActionPerformed
+        // TODO add your handling code here:
+        TH1.start();
+        TH2.start();
+        TH3.start();
+    }//GEN-LAST:event_JB_SimulacionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -523,20 +903,40 @@ public class Main_Lab7 extends javax.swing.JFrame {
             }
         });
     }
-
+    Thread1 TH1;
+    Thread2 TH2;
+    Thread3 TH3;
+    int cont = 0;
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> CB_CARS;
+    private javax.swing.JComboBox<String> CB_CarOwners;
+    private javax.swing.JComboBox<String> CB_CarsToBeAdded;
+    private javax.swing.JComboBox<String> CB_CarsToEmployee;
+    private javax.swing.JComboBox<String> CB_Clientes;
+    private javax.swing.JComboBox<String> CB_Empleado1;
+    private javax.swing.JComboBox<String> CB_Empleado2;
+    private javax.swing.JComboBox<String> CB_Empleado3;
     private javax.swing.JComboBox<String> CB_Size;
+    private javax.swing.JButton JB_AddingCarToClient;
     private javax.swing.JButton JB_CreateCarro;
+    private javax.swing.JButton JB_FinishCliente;
     private javax.swing.JButton JB_SaveCliente;
     private javax.swing.JButton JB_SaveEmpleado;
+    private javax.swing.JButton JB_SaveToEmployee;
+    private javax.swing.JButton JB_Simulacion;
+    private javax.swing.JDialog JD_AddCarsToClient;
+    private javax.swing.JDialog JD_AddClienteCarsToEmployee;
     private javax.swing.JDialog JD_CrearCarro;
     private javax.swing.JDialog JD_CrearCliente;
     private javax.swing.JDialog JD_RegistrarEmpleado;
-    private javax.swing.JList<String> JList_CarrosCliente;
-    private javax.swing.JList<String> JList_CarrosEmpleado;
+    private javax.swing.JMenuItem JMI_AddingCarToEmployee;
+    private javax.swing.JMenuItem JMI_AddingCarTooClient;
     private javax.swing.JMenuItem JMI_CreateCar;
     private javax.swing.JMenuItem JMI_CreateClient;
     private javax.swing.JMenuItem JMI_CreateEmployee;
+    private javax.swing.JProgressBar JProgressBar_Empleado1;
+    private javax.swing.JProgressBar JProgressBar_Empleado2;
+    private javax.swing.JProgressBar JProgressBar_Empleado3;
     private javax.swing.JSpinner JSpinner_DoorCant;
     private javax.swing.JSpinner JSpinner_Empleado;
     private javax.swing.JSpinner JSpinner_LevelDirty;
@@ -546,14 +946,15 @@ public class Main_Lab7 extends javax.swing.JFrame {
     private javax.swing.JTextField JT_NameCliente;
     private javax.swing.JTextField JT_NameEmpleado;
     private javax.swing.JTextField JT_NumeroPlaca;
+    private javax.swing.JPanel MainPanel;
     private javax.swing.JPanel MainPanel_CrearCliente;
     private javax.swing.JPanel MainPanel_JFrame;
     private javax.swing.JPanel MainPanel_RegistrarEmpleado;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -565,12 +966,9 @@ public class Main_Lab7 extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JProgressBar jProgressBar1;
-    private javax.swing.JProgressBar jProgressBar2;
-    private javax.swing.JProgressBar jProgressBar3;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTable jTable1;

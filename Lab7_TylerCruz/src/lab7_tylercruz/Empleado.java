@@ -1,12 +1,15 @@
 package lab7_tylercruz;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Empleado {
+public class Empleado implements Serializable{
     private String nombre;
     private String apellido;
     private String edad;
     ArrayList <Carro> listCarros = new ArrayList();
+    
+    private static final long SerialVersionUID=103L;
 
     public Empleado() {
     }
@@ -54,7 +57,7 @@ public class Empleado {
 
     @Override
     public String toString() {
-        return "Empleado{" + "nombre=" + nombre + ", apellido=" + apellido + ", edad=" + edad + ", listCarros=" + listCarros + '}';
+        return "Empleado " + " " + nombre + " " + apellido + " listCarros=" + listCarros + '}';
     }
     
     
